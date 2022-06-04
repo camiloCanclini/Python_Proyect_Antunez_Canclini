@@ -1,5 +1,7 @@
 """
-a
+asdfjnasdfhjjkasdfhjkasdhfjkhasdfljkdhasjfklhasdlfjkhasdljfkhdasf
+sdfafasdfasdfasdfasdf
+lorem   
 __________________________________________________________________________________
 Sistema Cine (Agenda que guarde peliculas en cartelera)
 con ticket (Compra candybar y entrada)- [en caso de que quede corto, le 
