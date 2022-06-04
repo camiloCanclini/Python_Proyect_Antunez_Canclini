@@ -1,5 +1,4 @@
 """
-
 __________________________________________________________________________________
 Sistema Cine (Agenda que guarde peliculas en cartelera)
 con ticket (Compra candybar y entrada)- [en caso de que quede corto, le 
@@ -12,6 +11,9 @@ Para que la URL funcione necesitamos pasar este paremetro
 __________________________________________________________________________________
 Developers: Agustin Antunez - Canclini Camilo
 __________________________________________________________________________________
+sadasdadasdsadas
+asdasdasd
+
 
 """
 def movieSearch(search):
