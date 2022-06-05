@@ -1,7 +1,4 @@
 """
-
-hola hola hola hola hola hola hola hola hola hola hola hola
- hola hola chau chau chau chau chau chau
 __________________________________________________________________________________
 Sistema Cine (Agenda que guarde peliculas en cartelera)
 con ticket (Compra candybar y entrada)- [en caso de que quede corto, le 
