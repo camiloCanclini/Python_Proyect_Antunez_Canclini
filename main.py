@@ -119,36 +119,108 @@ def billboardMovies():
         print(i["horarios"])
     jsonFile.close()     
 
-while True:
-    print ("---Bienvenido al Sistema de Cine---")
-    print ("-Elija una opción a continuación---")
-    print ("1) Buscar pelicula")
-    print ("2) Registrarse como cliente")
-    print ("3) Salir")
-    optionSelected = int(input("-> "))
-    if optionSelected==1:
-        movieSearch()
-        #if movieSearch(error) == 1:
-            #print ("La pelicula no fue encontrada")
-            #continue #vuelve a las opciones
-        numberTickets = int(input("Ingrese cantidad de tickets \n-> "))
-        if (numberTickets>10):
-            print ("Usted a requisado demasiados tickets (Maximo 10) ")
-            continue #vuelve a las opciones
-        print ("A continuacion se le presentara matriz con los lugares disponibles")
-        seatSearch()
-        print ("Esta informacion es correcta")
-        purchaseResume()
-        confirmation = input("Ingrese Y para confirmar, N para cancelar")
-        if confirmation == "N":
+
+#Registro
+registro = {}
+def registerAccount():
+    global registro
+    nombre = input ("Nombre: ")
+    apellido = input ("Apellido: ")
+    mail = input ("mail: ")
+    while True:
+        dni = (input ("DNI: "))
+        if len(dni) > 10:
+            print ("Demasiados caracteres")
+        else:
+            break
+
+    repeticion = 3
+    while repeticion > 0:
+        contraseña = input ("Ingrese una contraseña: ")
+        if len(contraseña) < 8:
+            print ("Debe ingresar minimo 8 caracteres")
             continue
         else:
-            ticketPrint()
-            print ("Muchas gracias por confiar en nosotros")
-            print ("Volviendo al menu")
-            a=input("")
-            continue
-    if optionSelected ==3:
-        print ("Finalizacion del programa")
-        break
+            verificacion = input ("ingrese nuevamente la contraseña: ")
+
+            if contraseña == verificacion:
+                break
+            elif repeticion == 0:
+                print ("Se acabaron los intentos")
+                break
+            else: 
+                print ("ERROR. Las contraseñas no coinciden")
+                repeticion -= 1
+                print ("Le quedan", repeticion, "intentos")
+
+    registro = {"Nombre": nombre, "Apellido": apellido, "DNI":dni, "E-mail": mail, "Contraseña" : contraseña}
+
+
+
+def login():
+    verificar = True
+    while verificar == True:
+        usuario = input ("Usuario: ")
+        contraseña_ingreso = input ("Contraseña: ")
+        for i in registro.values():
+            if usuario in registro.values() and contraseña_ingreso in registro.values():
+                verificar = False
+                break
+                    
+            elif usuario not in registro.values() or contraseña_ingreso not in registro.values():
+                print ("Usuario y/o contraseña no validos")  
+                break
+
+
+
+terminar = True
+while terminar == True:
+    print ("Obtenga su entrada de cine sin salir de su casa!")
+    print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
+    print ("Por favor, seleccione la opcion correspondiente: ")
+    print ("1) Registrarse")
+    print ("2)Ingresar")
+    opcion = int(input("Ingrese una opcion:"))
+
+   
+    if opcion == 1:
+        registerAccount()
+        print (registro)
+    if opcion == 2:
+        if registro == {}:
+            print ("No hay")
+        else:
+            login()
+            while True:
+                print ("---Bienvenido al Sistema de Cine---")
+                print ("-Elija una opción a continuación---")
+                print ("1) Buscar pelicula")
+                print ("2) Registrarse como cliente")
+                print ("3) Salir")
+                optionSelected = int(input("-> "))
+                if optionSelected==1:
+                    movieSearch()
+                    #if movieSearch(error) == 1:
+                        #print ("La pelicula no fue encontrada")
+                        #continue #vuelve a las opciones
+                    numberTickets = int(input("Ingrese cantidad de tickets \n-> "))
+                    if (numberTickets>10):
+                        print ("Usted a requisado demasiados tickets (Maximo 10) ")
+                        continue #vuelve a las opciones
+                    print ("A continuacion se le presentara matriz con los lugares disponibles")
+                    seatSearch()
+                    print ("Esta informacion es correcta")
+                    purchaseResume()
+                    confirmation = input("Ingrese Y para confirmar, N para cancelar")
+                    if confirmation == "N":
+                        continue
+                    else:
+                        ticketPrint()
+                        print ("Muchas gracias por confiar en nosotros")
+                        print ("Volviendo al menu")
+                        a=input("")
+                        continue
+                if optionSelected ==3:
+                    print ("Finalizacion del programa")
+                    break
 
