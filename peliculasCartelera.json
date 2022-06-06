@@ -6,9 +6,7 @@
     "2":{
         "titulo":"jurasic world",
         "horarios":"17:30-19:30",
-        "fecha" : "3 de abril domingo",
-
-
+        "fecha" : "3 de abril domingo"
     },
     "3":{
         "titulo":"jurasic world",
@@ -16,7 +14,5 @@
     
         "horarios":"17:30-19:30",
         "fecha" : "3 de abril domingo"
-        
-
     }
 }
