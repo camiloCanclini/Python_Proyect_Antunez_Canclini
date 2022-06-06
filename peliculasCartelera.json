@@ -1,0 +1,22 @@
+{
+    "1":{
+        "titulo":"sonic 2",
+        "horarios":"17:30-19:30"
+    },
+    "2":{
+        "titulo":"jurasic world",
+        "horarios":"17:30-19:30",
+        "fecha" : "3 de abril domingo",
+
+
+    },
+    "3":{
+        "titulo":"jurasic world",
+        "dimesion": "3D",
+    
+        "horarios":"17:30-19:30",
+        "fecha" : "3 de abril domingo"
+        
+
+    }
+}

@@ -16,20 +16,28 @@ ________________________________________________________________________________
 
 """
 import json, random
+"""
+#Esta funcion es para buscar la pelicula con la API OMDBAPI#
 from urllib.request import urlopen
-
-def movieSearch():
+def movieSearchByApi():
     url = 'http://www.omdbapi.com/?apikey=71066fc3&s='
     movieName = input("Ingrese el nombre de la pelicula \n-> ")
     #movieYear = input("Ingrese el año de la pelicula \n-> ")
     url += movieName # Se suma el nombre de la pelicula a la URL de la API
     response = urlopen(url) # Se hace la petición a la API y se guarda la respuesta en una variable
     data = json.loads(response.read()) # Se hace la conversion de la respuesta a Json
-    #print(data)
+    print(data)
     j=1
     for i in data["Search"]:
         print(j,")",i["Title"])
         j += 1
+"""
+def movieSearch():
+
+    jsonFile = open("peliculasCartelera.json", "r")
+    data = json.loads(jsonFile.read()) # Se hace la conversion de la respuesta a Json
+    print(data)
+    jsonFile.close()
 def seatSearch():
      ("Aqui esta la matriz")
     #Hay que hacer una matriz o arreglo que contenga los lugares ocupados y disponibles
@@ -73,7 +81,43 @@ def registerAccount(email, password):
             print (usersRegistered)
             break
         else:
-            print ("el id ya existe")     
+            print ("el id ya existe")
+def loginUser(username, password):
+    print("hola")
+def purchaseResume(movieName, ticketNumber, price, mailAccount):
+    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
+    print(widthLine.format("_______Resumen de la Compra_______"))
+    print(widthLine.format("Pelicula: "+movieName)) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Cantida de tickets: "+str(ticketNumber))) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Precio Total (IVA incluido): $"+str(price))) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Mail de la cuenta: "+mailAccount))
+    print(widthLine.format("_________________________________"))
+def ticketPrint(movieName, seatPlace, movieDate, movieSchedule):
+    ticketCode = "CODE"
+    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
+    for i in range(0,10):
+        ticketCode += str(random.randint(0,9))
+    print(widthLine.format("_____________Ticket_____________"))
+    print(widthLine.format("CODIGO DE TICKET: "+ticketCode)) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Pelicula: "+movieName)) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Asiento: "+seatPlace)) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Fecha: "+movieDate)) 
+    print(widthLine.format("------------------------"))
+    print(widthLine.format("Horario: "+movieSchedule)) 
+    print(widthLine.format("_________________________________"))
+def billboardMovies():
+    jsonFile = open("peliculasCartelera.json")
+    peliculas = json.load(jsonFile)
+    for i in peliculas:
+        print(i["titulo"])
+        print(i["horarios"])
+    jsonFile.close()     
 
 while True:
     print ("---Bienvenido al Sistema de Cine---")
