@@ -19,7 +19,7 @@ ________________________________________________________________________________
 import json, random
 
 def billboardMovies():
-    jsonFile = open("peliculasCartelera.json")
+    jsonFile = open("json/peliculasCartelera.json")
     data = json.load(jsonFile) # Se hace la conversion de la respuesta a Json
     #print(type(data))
     jsonFile.close()
@@ -41,7 +41,7 @@ def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
             "password": "admin"}
         } 
     jsonString = json.dumps(templateJsonUsers)
-    jsonFile = open("cuentas.json", "w")
+    jsonFile = open("json/cuentas.json", "w")
     jsonFile.write(jsonString)
     jsonFile.close()
 def purchaseResume(movieName, numberTickets, price, mailAccount):
@@ -119,7 +119,7 @@ def registerAccount():
         for i in range(0,4):
             idAccount += str(random.randint(1,9))
             #print(idAccount)
-        jsonFile = open('cuentas.json')
+        jsonFile = open('json/cuentas.json')
         usersRegistered = json.load(jsonFile)
         if usersRegistered.get(idAccount) == None:
             usersRegistered [idAccount] = {
@@ -130,7 +130,7 @@ def registerAccount():
                 }
             #print (usersRegistered)
             jsonString = json.dumps(usersRegistered)
-            jsonFile = open("cuentas.json", "w")
+            jsonFile = open("json/cuentas.json", "w")
             jsonFile.write(jsonString)
             jsonFile.close()
             #print (usersRegistered)
@@ -138,7 +138,7 @@ def registerAccount():
         else:
             print ("el id ya existe")
 def getUsers():
-    jsonFile = open("cuentas.json")
+    jsonFile = open("json/cuentas.json")
     data = json.load(jsonFile)
     return data
 #print(getUsers())
@@ -148,7 +148,7 @@ while True:
     print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
     print ("Por favor, seleccione la opcion correspondiente:\n")
     print ("1) Registrarse")
-    print ("2)Ingresar")
+    print ("2) Ingresar")
     try:# Si esto tira error se realiza el except, esto se hace por si no se ingresa un numero 
         optionSelected = int(input("Ingrese una opcion:"))
     except:
@@ -175,8 +175,11 @@ while True:
                 for i in movies.values():
                     print (i["titulo"])
                 numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
-                if (numberTickets>10):
+                if numberTickets>10:
                     print ("Usted a requisado demasiados tickets (Maximo 10) ")
+                    continue #vuelve a las opciones
+                if numberTickets<=0:
+                    print ("Usted tiene que seleccionar por lo menos un ticket ")
                     continue #vuelve a las opciones
                 price = calcPrice(numberTickets)
                 
