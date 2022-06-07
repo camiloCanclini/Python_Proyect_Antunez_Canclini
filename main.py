@@ -21,7 +21,7 @@ import json, random
 def billboardMovies():
     jsonFile = open("peliculasCartelera.json")
     data = json.load(jsonFile) # Se hace la conversion de la respuesta a Json
-    print(type(data))
+    #print(type(data))
     jsonFile.close()
     return data
 def calcPrice(numberTickets):
@@ -72,20 +72,20 @@ def ticketPrint(movieName, seatPlace, movieDate, movieSchedule):
     print(widthLine.format("Horario: "+movieSchedule)) 
     print(widthLine.format("_________________________________"))  
 def login(usersData):
-    verificar = True
-    while verificar == True:
-        global emailSession
-        usuario = input ("Usuario: ")
+    while True:
+        emailSession = None
+        usuario = input ("\nEmail: ")
         contraseña_ingreso = input ("Contraseña: ")
         for i in usersData.values():
-            print(i)
-            print (i["email"])
+            #print(i)
             if usuario == i["email"] and contraseña_ingreso == i["password"]:
-                verificar = False
-                emailSession = usuario
+                emailSession = i["email"]
                 break       
-            else:
-                print ("Usuario y/o contraseña no validos") 
+        if emailSession == None:
+            print ("\nUsuario y/o contraseña no validos")
+        else:
+            break
+    return emailSession
 def registerAccount():
     name = input ("Nombre Y Apellido: ")
     email = input ("Email: ")
@@ -118,14 +118,15 @@ def registerAccount():
     while True:
         for i in range(0,4):
             idAccount += str(random.randint(1,9))
-            print(idAccount)
+            #print(idAccount)
         jsonFile = open('cuentas.json')
         usersRegistered = json.load(jsonFile)
         if usersRegistered.get(idAccount) == None:
             usersRegistered [idAccount] = {
                 "name": name,
                 "email": email,
-                "password": password
+                "password": password,
+                "dni": dni
                 }
             #print (usersRegistered)
             jsonString = json.dumps(usersRegistered)
@@ -145,7 +146,7 @@ def getUsers():
 while True:
     print ("\nObtenga su entrada de cine sin salir de su casa!")
     print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
-    print ("Por favor, seleccione la opcion correspondiente: ")
+    print ("Por favor, seleccione la opcion correspondiente:\n")
     print ("1) Registrarse")
     print ("2)Ingresar")
     try:# Si esto tira error se realiza el except, esto se hace por si no se ingresa un numero 
@@ -156,13 +157,13 @@ while True:
     if optionSelected == 1:
         registerAccount()
     elif optionSelected == 2:
-        login(getUsers())
+        emailSession = login(getUsers())
         while True:
-            print ("---Bienvenido al Sistema de Cine---")
+            print ("\n---Bienvenido al Sistema de Cine---")
+            print ("---Email de la sesion:",emailSession,"---")
             print ("-Elija una opción a continuación---")
             print ("1) Ver peliculas en cartelera")
-            print ("2) Mostrar informacion de la cuenta actual")
-            print ("3) Salir")
+            print ("2) Salir")
             try:
                 option2Selected = int(input("-> ")) 
             except:
@@ -170,10 +171,10 @@ while True:
                 continue
             if option2Selected==1:
                 movies = billboardMovies()
-                print("Peliculas en Cartelera: ")
+                print("\nPeliculas en Cartelera:\n")
                 for i in movies.values():
                     print (i["titulo"])
-                numberTickets = int(input("Ingrese cantidad de tickets \n-> "))
+                numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
                 if (numberTickets>10):
                     print ("Usted a requisado demasiados tickets (Maximo 10) ")
                     continue #vuelve a las opciones
@@ -189,11 +190,11 @@ while True:
                 else:
                     ticketPrint()
                     print ("Muchas gracias por confiar en nosotros")
+                    input("Presione ENTER para continuar...")
                     print ("Volviendo al menu")
                     continue
             if option2Selected ==2:
-                print ("Aca esta la info de la cuenta")    
-            if option2Selected ==3:
                 print ("Volviendo Al Menu Principal...")
                 break
+                
     
