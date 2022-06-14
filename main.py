@@ -142,6 +142,61 @@ def getUsers():
     data = json.load(jsonFile)
     return data
 #print(getUsers())
+
+def asientos_cine():
+    from random import randint
+
+    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    print("--------------------------------------------------")
+    
+    matriz = {"A":[],"B":[],"C":[],"D":[],
+            "E":[],"F":[],"G":[],"H":[],
+            "I":[],"J":[],"K":[],"L":[]}
+
+    for i in matriz.keys():
+        for j in matriz.values():
+            j.append(randint(0,1))
+
+
+    #Resultado
+    for i in matriz.keys():
+        print (i,"|",end=" ")
+        for j in matriz[i]:
+            print(j, end="   ")
+        print("")
+
+    print("")
+    cant_personas = 1
+    print ("")
+    while cant_personas > 0:
+        cant_personas = int(input("Cuantos asientos va a reservar? (Maximo 5) : "))
+        if cant_personas > 5:
+            print("ERROR, cantidad superada")
+            continue
+        while cant_personas > 0:
+            fila, columna = input("Seleccione un asiento: ").split()
+            columna = int(columna)
+            for i in matriz.keys():
+                if fila == i:
+                    for j in range(0,13):
+                        if int(columna) == j:
+                            if matriz[i][j] == 1:
+                                print ("Ocupado, seleccione otro")
+                                continue
+                            elif matriz[i][j] == 0:
+                                matriz[i][j] = 1
+                                print ("Asiento reservado")
+                                cant_personas -= 1
+                                break
+
+    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    print("---------------------------------------------------")
+    for i in matriz.keys():
+        print (i,"|",end=" ")
+        for j in matriz[i]:
+            print(j, end="   ")
+        print("")
+
 #Comienzo del Programa---------------------------------------------------------------------------------          
 while True:
     print ("\nObtenga su entrada de cine sin salir de su casa!")
@@ -182,8 +237,10 @@ while True:
                     print ("Usted tiene que seleccionar por lo menos un ticket ")
                     continue #vuelve a las opciones
                 price = calcPrice(numberTickets)
-                
+                #Asientos de cine
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
+                asientos_cine()
+
                 seatSearch()
                 print ("Esta informacion es correcta")
                 purchaseResume(movieName, numberTickets, price, emailSession)
