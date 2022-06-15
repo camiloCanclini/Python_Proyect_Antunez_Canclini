@@ -25,7 +25,7 @@
     },
 
     "4": {
-        "titulo":"jurasic world - 2D SUB",
+        "titulo":"jurasic world: Dominio - 2D SUB",
         "fecha":"22 de junio",
         "horarios":"19:40",
         "Genero":"Aventura",
@@ -33,7 +33,7 @@
     },
 
     "5": {
-        "titulo":"jurasic world - 3D SUB",
+        "titulo":"jurasic world: Dominio - 3D SUB",
         "fecha":"22 de junio",
         "horarios":"20:20",
         "Genero":"Aventura",
@@ -49,11 +49,11 @@
     },
 
     "7":{
-        "titulo":"jurasic world - 3D SUB",
+        "titulo":" Gemelo Siniestro - 2D SUB",
         "fecha":"22 de junio",
-        "horarios":"19:40",
-        "Genero":"Aventura",
-        "Calificacion":"+13"
+        "horarios":"22:50",
+        "Genero":"Terror",
+        "Calificacion":"+16"
     },
 
     "8":{
