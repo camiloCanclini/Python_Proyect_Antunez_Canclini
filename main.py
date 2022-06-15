@@ -81,18 +81,21 @@ while True:
                     continue #vuelve a las opciones
                 price = functions.calcPrice(numberTickets)
                 #Asientos de cine
+                os.system('cls||clear') #limpia la pantalla
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
                 functions.seatSearch()
-                print ("Esta informacion es correcta")
+                os.system('cls||clear') #limpia la pantalla
                 functions.purchaseResume(movieName, numberTickets, price, emailSession)
-                confirmation = input("Ingrese Y para confirmar, N para cancelar")
-                if confirmation == "N":
-                    continue
-                else:
-                    functions.ticketPrint()
+                print ("Ingrese Y para confirmar, Cualquier otra tecla para cancelar")
+                confirmation = input("->")
+                if confirmation == "Y":
+                    os.system('cls||clear') #limpia la pantalla
+                    functions.ticketPrint(movieName, seatPlace, movies[movieNumber]["hora"], movies[movieNumber]["fecha"])
                     print ("Muchas gracias por confiar en nosotros")
                     input("Presione ENTER para continuar...")
                     print ("Volviendo al menu")
+                    continue
+                else:
                     continue
             if option2Selected ==2:
                 print ("Volviendo Al Menu Principal...")
