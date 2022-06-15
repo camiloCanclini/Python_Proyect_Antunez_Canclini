@@ -145,8 +145,11 @@ def getUsers():
 
 def asientos_cine():
     from random import randint
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    
+    print("{:>3}".format("|"), end=" ")
+    for x in range(0,12):
+        print ("{:<3}".format(x), end = " ")
+    print ("")
     print("--------------------------------------------------")
     
     matriz = {"A":[],"B":[],"C":[],"D":[],
@@ -164,6 +167,8 @@ def asientos_cine():
         for j in matriz[i]:
             print(j, end="   ")
         print("")
+    print ("")
+    print ("{:>28}".format("Pantalla"))
 
     print("")
     cant_personas = 1
@@ -186,16 +191,22 @@ def asientos_cine():
                             elif matriz[i][j] == 0:
                                 matriz[i][j] = 1
                                 print ("Asiento reservado")
+                                print("")
                                 cant_personas -= 1
                                 break
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    
+    print("{:>3}".format("|"), end=" ")
+    for x in range(0,12):
+        print ("{:<3}".format(x), end = " ")
+    print ("")
     print("---------------------------------------------------")
     for i in matriz.keys():
         print (i,"|",end=" ")
         for j in matriz[i]:
             print(j, end="   ")
         print("")
+    print ("")
+    print ("{:>28}".format("Pantalla"))
 
 #Comienzo del Programa---------------------------------------------------------------------------------          
 while True:
@@ -239,6 +250,7 @@ while True:
                 price = calcPrice(numberTickets)
                 #Asientos de cine
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
+                print("")
                 asientos_cine()
 
                 seatSearch()
