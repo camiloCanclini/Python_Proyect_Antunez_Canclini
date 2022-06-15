@@ -55,8 +55,13 @@ while True:
                 print("\nPeliculas en Cartelera:\n")
                 movies = functions.billboardMovies()
                 for i in movies.keys():
-                    print (i,")",end="")
-                    print (movies[i]["titulo"])
+                    try:
+                        print (i,")",end="")
+                        print (movies[i]["titulo"])
+                        print (movies[i]["fecha"])
+                        print (movies[i]["horario"])
+                    except:
+                        continue
                 print("Elija la pelicula(numero)...")
                 try:
                     movieNumber = input("-> ") 
@@ -72,7 +77,11 @@ while True:
                     print("La pelicula no fue encontrada...")
                     continue
                 os.system('cls||clear') #limpia la pantalla
-                numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
+                try:
+                    numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
+                except:
+                    print("Error al pedir los tickets, vuelva a intentar...")
+                    continue
                 if numberTickets>10:
                     print ("Usted a requisado demasiados tickets (Maximo 10) ")
                     continue #vuelve a las opciones
