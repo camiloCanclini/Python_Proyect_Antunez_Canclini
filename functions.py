@@ -11,7 +11,7 @@ def calcPrice(numberTickets):
     return (priceTicket*numberTickets)*IVA
 def seatSearch(numberTickets):
     from random import randint
-    
+    seatPlace = list()
     print("{:>3}".format("|"), end=" ")
     for x in range(0,12):
         print ("{:<3}".format(x), end = " ")
@@ -25,7 +25,6 @@ def seatSearch(numberTickets):
     for i in matriz.keys():
         for j in matriz.values():
             j.append(randint(0,1))
-
 
     #Resultado
     for i in matriz.keys():
@@ -42,15 +41,15 @@ def seatSearch(numberTickets):
         columna = int(columna)
         for i in matriz.keys():
             for j in range(0,13):
-                if fila == i and int(columna) == j:
+                if fila == i and columna == j:
                     if matriz[i][j] == 1:
                         print ("Ocupado, seleccione otro")
                         continue
                     elif matriz[i][j] == 0:
                         matriz[i][j] = 1
                         print ("Asiento reservado")
+                        seatPlace.append([i,str(j)]) 
                         print("")
-    
     print("{:>3}".format("|"), end=" ")
     for x in range(0,12):
         print ("{:<3}".format(x), end = " ")
@@ -63,6 +62,8 @@ def seatSearch(numberTickets):
         print("")
     print ("")
     print ("{:>28}".format("Pantalla"))
+
+    return seatPlace
 def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
     templateJsonUsers = {
         0:{
@@ -96,7 +97,7 @@ def ticketPrint(movieName, seatPlace, movieDate, movieSchedule):
         print(widthLine.format("------------------------"))
         print(widthLine.format("Pelicula: "+movieName)) 
         print(widthLine.format("------------------------"))
-        print(widthLine.format("Asiento: "+i)) 
+        print(widthLine.format("Asiento: "+str(i[0])+str(i[1]))) 
         print(widthLine.format("------------------------"))
         print(widthLine.format("Fecha: "+movieDate)) 
         print(widthLine.format("------------------------"))

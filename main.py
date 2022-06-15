@@ -92,14 +92,15 @@ while True:
                 #Asientos de cine
                 os.system('cls||clear') #limpia la pantalla
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
-                functions.seatSearch(numberTickets)
+                seatPlace=functions.seatSearch(numberTickets)
                 os.system('cls||clear') #limpia la pantalla
+                print (seatPlace)
                 functions.purchaseResume(movieName, numberTickets, price, emailSession)
                 print ("Ingrese Y para confirmar, Cualquier otra tecla para cancelar")
                 confirmation = input("->")
                 if confirmation == "Y":
                     os.system('cls||clear') #limpia la pantalla
-                    functions.ticketPrint(movieName, seatPlace, movies[movieNumber]["hora"], movies[movieNumber]["fecha"])
+                    functions.ticketPrint(movieName, seatPlace, movies[movieNumber]["horarios"], movies[movieNumber]["fecha"])
                     print ("Muchas gracias por confiar en nosotros")
                     input("Presione ENTER para continuar...")
                     print ("Volviendo al menu")
