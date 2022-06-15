@@ -6,7 +6,7 @@ def billboardMovies():
     jsonFile.close()
     return data
 def calcPrice(numberTickets):
-    IVA = 1,21
+    IVA = 1.21
     priceTicket = 300
     return (priceTicket*numberTickets)*IVA
 def seatSearch(numberTickets):
@@ -37,7 +37,6 @@ def seatSearch(numberTickets):
     print ("{:>28}".format("Pantalla"))
 
     print("")
-    print ("hola")
     for n in range(0,numberTickets):
         fila, columna = input("Seleccione un asiento: ")
         columna = int(columna)
@@ -76,7 +75,7 @@ def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
     jsonFile.write(jsonString)
     jsonFile.close()
 def purchaseResume(movieName, numberTickets, price, mailAccount):
-    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
+    widthLine = "{:^30}" # esto es para que...print("{:^50}".format("...")
     print(widthLine.format("_______Resumen de la Compra_______"))
     print(widthLine.format("Pelicula: "+movieName)) 
     print(widthLine.format("------------------------"))
@@ -88,20 +87,21 @@ def purchaseResume(movieName, numberTickets, price, mailAccount):
     print(widthLine.format("_________________________________"))
 def ticketPrint(movieName, seatPlace, movieDate, movieSchedule):
     ticketCode = "CODE"
-    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
+    widthLine = "{:^30}" # esto es para que...print("{:^50}".format("...")
     for i in range(0,10):
         ticketCode += str(random.randint(0,9))
-    print(widthLine.format("_____________Ticket_____________"))
-    print(widthLine.format("CODIGO DE TICKET: "+ticketCode)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Pelicula: "+movieName)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Asiento: "+seatPlace)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Fecha: "+movieDate)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Horario: "+movieSchedule)) 
-    print(widthLine.format("_________________________________"))  
+    for i in seatPlace:#por cada asiento selecionado se imprime un ticket diferente
+        print(widthLine.format("_____________Ticket_____________"))
+        print(widthLine.format("CODIGO DE TICKET: "+ticketCode)) 
+        print(widthLine.format("------------------------"))
+        print(widthLine.format("Pelicula: "+movieName)) 
+        print(widthLine.format("------------------------"))
+        print(widthLine.format("Asiento: "+i)) 
+        print(widthLine.format("------------------------"))
+        print(widthLine.format("Fecha: "+movieDate)) 
+        print(widthLine.format("------------------------"))
+        print(widthLine.format("Horario: "+movieSchedule)) 
+        print(widthLine.format("_________________________________"))  
 def login(usersData):
     while True:
         emailSession = None
