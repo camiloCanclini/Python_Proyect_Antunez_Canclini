@@ -82,7 +82,7 @@ while True:
                 price = functions.calcPrice(numberTickets)
                 #Asientos de cine
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
-                functions.seatSearch()
+                functions.seatSearch(numberTickets)
                 print ("Esta informacion es correcta")
                 functions.purchaseResume(movieName, numberTickets, price, emailSession)
                 confirmation = input("Ingrese Y para confirmar, N para cancelar")

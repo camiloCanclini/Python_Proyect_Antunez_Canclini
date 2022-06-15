@@ -5,7 +5,11 @@ def billboardMovies():
     #print(type(data))
     jsonFile.close()
     return data
-def seatSearch():
+def calcPrice(numberTickets):
+    IVA = 1,21
+    priceTicket = 300
+    return (priceTicket*numberTickets)*IVA
+def seatSearch(numberTickets):
     from random import randint
     
     print("{:>3}".format("|"), end=" ")
@@ -33,29 +37,20 @@ def seatSearch():
     print ("{:>28}".format("Pantalla"))
 
     print("")
-    cant_personas = 1
-    print ("")
-    while cant_personas > 0:
-        cant_personas = int(input("Cuantos asientos va a reservar? (Maximo 5) : "))
-        if cant_personas > 5:
-            print("ERROR, cantidad superada")
-            continue
-        while cant_personas > 0:
-            fila, columna = input("Seleccione un asiento: ").split()
-            columna = int(columna)
-            for i in matriz.keys():
-                if fila == i:
-                    for j in range(0,13):
-                        if int(columna) == j:
-                            if matriz[i][j] == 1:
-                                print ("Ocupado, seleccione otro")
-                                continue
-                            elif matriz[i][j] == 0:
-                                matriz[i][j] = 1
-                                print ("Asiento reservado")
-                                print("")
-                                cant_personas -= 1
-                                break
+    print ("hola")
+    for n in range(0,numberTickets):
+        fila, columna = input("Seleccione un asiento: ")
+        columna = int(columna)
+        for i in matriz.keys():
+            for j in range(0,13):
+                if fila == i and int(columna) == j:
+                    if matriz[i][j] == 1:
+                        print ("Ocupado, seleccione otro")
+                        continue
+                    elif matriz[i][j] == 0:
+                        matriz[i][j] = 1
+                        print ("Asiento reservado")
+                        print("")
     
     print("{:>3}".format("|"), end=" ")
     for x in range(0,12):
@@ -69,10 +64,6 @@ def seatSearch():
         print("")
     print ("")
     print ("{:>28}".format("Pantalla"))
-def calcPrice(numberTickets):
-    IVA = 1,21
-    priceTicket = 300
-    return (priceTicket*numberTickets)*IVA
 def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
     templateJsonUsers = {
         0:{
