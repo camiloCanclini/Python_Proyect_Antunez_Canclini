@@ -17,188 +17,12 @@ ________________________________________________________________________________
 """
 #Definicion de Librerias, funciones y metodos----------------------------------------------------------    
 import json, random
-
-def billboardMovies():
-    jsonFile = open("json/peliculasCartelera.json")
-    data = json.load(jsonFile) # Se hace la conversion de la respuesta a Json
-    #print(type(data))
-    jsonFile.close()
-    return data
-def calcPrice(numberTickets):
-    IVA = 1,21
-    priceTicket = 300
-    return (priceTicket*numberTickets)*IVA
-def seatSearch():
-     ("Aqui esta la matriz")
-    #Hay que hacer una matriz o arreglo que contenga los lugares ocupados y disponibles
-    #Deberiamos permitir que seleccionen solo los lugares disponibles
-    #Para selecionarlos podemos hacer como si fuera un batalla naval con letras y numeros de posicion
-def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
-    templateJsonUsers = {
-        0:{
-            "name": "administratorAccount",
-            "email": "admin",
-            "password": "admin"}
-        } 
-    jsonString = json.dumps(templateJsonUsers)
-    jsonFile = open("json/cuentas.json", "w")
-    jsonFile.write(jsonString)
-    jsonFile.close()
-def purchaseResume(movieName, numberTickets, price, mailAccount):
-    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
-    print(widthLine.format("_______Resumen de la Compra_______"))
-    print(widthLine.format("Pelicula: "+movieName)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Cantida de tickets: "+str(numberTickets))) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Precio Total (IVA incluido): $"+str(price))) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Mail de la cuenta: "+mailAccount))
-    print(widthLine.format("_________________________________"))
-def ticketPrint(movieName, seatPlace, movieDate, movieSchedule):
-    ticketCode = "CODE"
-    widthLine = "{:^60}" # esto es para que...print("{:^50}".format("...")
-    for i in range(0,10):
-        ticketCode += str(random.randint(0,9))
-    print(widthLine.format("_____________Ticket_____________"))
-    print(widthLine.format("CODIGO DE TICKET: "+ticketCode)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Pelicula: "+movieName)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Asiento: "+seatPlace)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Fecha: "+movieDate)) 
-    print(widthLine.format("------------------------"))
-    print(widthLine.format("Horario: "+movieSchedule)) 
-    print(widthLine.format("_________________________________"))  
-def login(usersData):
-    while True:
-        emailSession = None
-        usuario = input ("\nEmail: ")
-        contraseña_ingreso = input ("Contraseña: ")
-        for i in usersData.values():
-            #print(i)
-            if usuario == i["email"] and contraseña_ingreso == i["password"]:
-                emailSession = i["email"]
-                break       
-        if emailSession == None:
-            print ("\nUsuario y/o contraseña no validos")
-        else:
-            break
-    return emailSession
-def registerAccount():
-    name = input ("Nombre Y Apellido: ")
-    email = input ("Email: ")
-    while True:
-        dni = (input ("DNI: "))
-        if len(dni) > 10:
-            print ("Demasiados caracteres")
-        else:
-            break
-    #Verificacion de contraseña
-    repeticion = 3
-    while repeticion > 0:
-        password = input ("Ingrese una contraseña: ")
-        if len(password) < 8:
-            print ("Debe ingresar minimo 8 caracteres")
-            continue
-        else:
-            flag = input ("ingrese nuevamente la contraseña: ")
-
-            if password == flag:
-                break
-            elif repeticion == 0:
-                print ("Se acabaron los intentos")
-                break
-            else: 
-                print ("ERROR. Las contraseñas no coinciden")
-                repeticion -= 1
-                print ("Le quedan", repeticion, "intentos")
-    idAccount=""
-    while True:
-        for i in range(0,4):
-            idAccount += str(random.randint(1,9))
-            #print(idAccount)
-        jsonFile = open('json/cuentas.json')
-        usersRegistered = json.load(jsonFile)
-        if usersRegistered.get(idAccount) == None:
-            usersRegistered [idAccount] = {
-                "name": name,
-                "email": email,
-                "password": password,
-                "dni": dni
-                }
-            #print (usersRegistered)
-            jsonString = json.dumps(usersRegistered)
-            jsonFile = open("json/cuentas.json", "w")
-            jsonFile.write(jsonString)
-            jsonFile.close()
-            #print (usersRegistered)
-            break
-        else:
-            print ("el id ya existe")
-def getUsers():
-    jsonFile = open("json/cuentas.json")
-    data = json.load(jsonFile)
-    return data
-#print(getUsers())
-
-def asientos_cine():
-    from random import randint
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
-    print("--------------------------------------------------")
-    
-    matriz = {"A":[],"B":[],"C":[],"D":[],
-            "E":[],"F":[],"G":[],"H":[],
-            "I":[],"J":[],"K":[],"L":[]}
-
-    for i in matriz.keys():
-        for j in matriz.values():
-            j.append(randint(0,1))
-
-
-    #Resultado
-    for i in matriz.keys():
-        print (i,"|",end=" ")
-        for j in matriz[i]:
-            print(j, end="   ")
-        print("")
-
-    print("")
-    cant_personas = 1
-    print ("")
-    while cant_personas > 0:
-        cant_personas = int(input("Cuantos asientos va a reservar? (Maximo 5) : "))
-        if cant_personas > 5:
-            print("ERROR, cantidad superada")
-            continue
-        while cant_personas > 0:
-            fila, columna = input("Seleccione un asiento: ").split()
-            columna = int(columna)
-            for i in matriz.keys():
-                if fila == i:
-                    for j in range(0,13):
-                        if int(columna) == j:
-                            if matriz[i][j] == 1:
-                                print ("Ocupado, seleccione otro")
-                                continue
-                            elif matriz[i][j] == 0:
-                                matriz[i][j] = 1
-                                print ("Asiento reservado")
-                                cant_personas -= 1
-                                break
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
-    print("---------------------------------------------------")
-    for i in matriz.keys():
-        print (i,"|",end=" ")
-        for j in matriz[i]:
-            print(j, end="   ")
-        print("")
+import os
+import functions
 
 #Comienzo del Programa---------------------------------------------------------------------------------          
 while True:
+    os.system('cls||clear') #limpia la pantalla
     print ("\nObtenga su entrada de cine sin salir de su casa!")
     print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
     print ("Por favor, seleccione la opcion correspondiente:\n")
@@ -210,10 +34,13 @@ while True:
         print("Elija de nuevo porfavor...")
         continue
     if optionSelected == 1:
-        registerAccount()
+        functions.registerAccount()
+        os.system('cls||clear') #limpia la pantalla
     elif optionSelected == 2:
-        emailSession = login(getUsers())
+        emailSession = functions.login(functions.getUsers())
+        os.system('cls||clear') #limpia la pantalla
         while True:
+            os.system('cls||clear') #limpia la pantalla
             print ("\n---Bienvenido al Sistema de Cine---")
             print ("---Email de la sesion:",emailSession,"---")
             print ("-Elija una opción a continuación---")
@@ -224,11 +51,28 @@ while True:
             except:
                 print("Elija de nuevo porfavor...")
                 continue
+            os.system('cls||clear') #limpia la pantalla
             if option2Selected==1:
-                movies = billboardMovies()
                 print("\nPeliculas en Cartelera:\n")
-                for i in movies.values():
-                    print (i["titulo"])
+                movies = functions.billboardMovies()
+                for i in movies.keys():
+                    print (i,")",end="")
+                    print (movies[i]["titulo"])
+                print("Elija la pelicula(numero)...")
+                try:
+                    movieNumber = input("-> ") 
+                except:
+                    print("Elija de nuevo porfavor...")
+                    continue
+                for i in movies.keys():
+                    if movieNumber == i:
+                        movieName = movies[i]["titulo"]
+                        print ("pelicula encontrada")
+                        break
+                if "movieName" not in globals(): #Si el for anterior falla...
+                    print("La pelicula no fue encontrada...")
+                    continue
+                os.system('cls||clear') #limpia la pantalla
                 numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
                 if numberTickets>10:
                     print ("Usted a requisado demasiados tickets (Maximo 10) ")
@@ -236,19 +80,17 @@ while True:
                 if numberTickets<=0:
                     print ("Usted tiene que seleccionar por lo menos un ticket ")
                     continue #vuelve a las opciones
-                price = calcPrice(numberTickets)
+                price = functions.calcPrice(numberTickets)
                 #Asientos de cine
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
-                asientos_cine()
-
-                seatSearch()
+                functions.seatSearch()
                 print ("Esta informacion es correcta")
-                purchaseResume(movieName, numberTickets, price, emailSession)
+                functions.purchaseResume(movieName, numberTickets, price, emailSession)
                 confirmation = input("Ingrese Y para confirmar, N para cancelar")
                 if confirmation == "N":
                     continue
                 else:
-                    ticketPrint()
+                    functions.ticketPrint()
                     print ("Muchas gracias por confiar en nosotros")
                     input("Presione ENTER para continuar...")
                     print ("Volviendo al menu")
