@@ -7,8 +7,11 @@ def billboardMovies():
     return data
 def seatSearch():
     from random import randint
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    
+    print("{:>3}".format("|"), end=" ")
+    for x in range(0,12):
+        print ("{:<3}".format(x), end = " ")
+    print ("")
     print("--------------------------------------------------")
     
     matriz = {"A":[],"B":[],"C":[],"D":[],
@@ -19,12 +22,15 @@ def seatSearch():
         for j in matriz.values():
             j.append(randint(0,1))
 
+
     #Resultado
     for i in matriz.keys():
         print (i,"|",end=" ")
         for j in matriz[i]:
             print(j, end="   ")
         print("")
+    print ("")
+    print ("{:>28}".format("Pantalla"))
 
     print("")
     cant_personas = 1
@@ -47,16 +53,22 @@ def seatSearch():
                             elif matriz[i][j] == 0:
                                 matriz[i][j] = 1
                                 print ("Asiento reservado")
+                                print("")
                                 cant_personas -= 1
                                 break
-
-    print("    0","  1","  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11")
+    
+    print("{:>3}".format("|"), end=" ")
+    for x in range(0,12):
+        print ("{:<3}".format(x), end = " ")
+    print ("")
     print("---------------------------------------------------")
     for i in matriz.keys():
         print (i,"|",end=" ")
         for j in matriz[i]:
             print(j, end="   ")
         print("")
+    print ("")
+    print ("{:>28}".format("Pantalla"))
 def calcPrice(numberTickets):
     IVA = 1,21
     priceTicket = 300

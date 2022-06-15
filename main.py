@@ -18,8 +18,7 @@ ________________________________________________________________________________
 #Definicion de Librerias, funciones y metodos----------------------------------------------------------    
 import json, random
 import os
-import functions
-
+import functions #Se linkean las funciones del programa
 #Comienzo del Programa---------------------------------------------------------------------------------          
 while True:
     os.system('cls||clear') #limpia la pantalla
