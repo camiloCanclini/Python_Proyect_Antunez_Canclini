@@ -21,6 +21,7 @@ import os
 import functions #Se linkean las funciones del programa
 #Comienzo del Programa---------------------------------------------------------------------------------          
 while True:
+    #----SECCION DE INCIO DE SESION Y REGISTRO-------------------
     os.system('cls||clear') #limpia la pantalla
     print ("\nObtenga su entrada de cine sin salir de su casa!")
     print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
@@ -32,9 +33,11 @@ while True:
     except:
         print("Elija de nuevo porfavor...")
         continue
+    #----SECCION DE REGISTRO DE USUARIO(FUNCION)-------------------
     if optionSelected == 1:
         functions.registerAccount()
         os.system('cls||clear') #limpia la pantalla
+#----MENU PRINCIPAL-------------------
     elif optionSelected == 2:
         emailSession = functions.login(functions.getUsers())
         os.system('cls||clear') #limpia la pantalla
@@ -51,6 +54,7 @@ while True:
                 print("Elija de nuevo porfavor...")
                 continue
             os.system('cls||clear') #limpia la pantalla
+#----SE MUESTRA LA CARTELERA-------------------
             if option2Selected==1:
                 print("\nPeliculas en Cartelera:\n")
                 movies = functions.billboardMovies()
@@ -65,6 +69,7 @@ while True:
 
                     except:
                         continue
+#----SELECCION DE PELICULA-------------------
                 print("Elija la pelicula(numero)...")
                 try:
                     movieNumber = input("-> ") 
@@ -72,7 +77,7 @@ while True:
                     print("Elija de nuevo porfavor...")
                     continue
 
-                #Busqueda de pelicula en el JSON
+#----SE BUSCA LA PELICULA EN EL JSON-------------------
                 for i in movies.keys():
                     if movieNumber == i:
                         movieName = movies[i]["titulo"]
@@ -82,6 +87,7 @@ while True:
                     print("La pelicula no fue encontrada...")
                     continue
                 os.system('cls||clear') #limpia la pantalla
+#----CANTIDAD DE TICKETS-------------------                
                 try:
                     numberTickets = int(input("\nIngrese cantidad de tickets \n-> "))
                 except:
@@ -95,17 +101,20 @@ while True:
                     continue #vuelve a las opciones
                 price = functions.calcPrice(numberTickets)
                 os.system('cls||clear') #limpia la pantalla
-
-                #Asientos de cine
+#----SELECCION DE ASIENTOS-------------------                
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
                 seatPlace=functions.seatSearch(numberTickets)
                 os.system('cls||clear') #limpia la pantalla 
                 print (seatPlace)
+#----SE HACE RESUMEN DE LA COMPRA-------------------
                 functions.purchaseResume(movieName, numberTickets, price, emailSession)
                 print ("Ingrese Y para confirmar, Cualquier otra tecla para cancelar")
                 confirmation = input("->")
+#----CONFIRMACION DE LA COMPRA-------------------            
                 if confirmation == "Y":
                     os.system('cls||clear') #limpia la pantalla
+#----SE IMPRIMEN LOS TICKETS
+# -------------------            
                     functions.ticketPrint(movieName, seatPlace, movies[movieNumber]["horarios"], movies[movieNumber]["fecha"])
                     print ("Muchas gracias por confiar en nosotros")
                     input("Presione ENTER para continuar...")
