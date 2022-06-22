@@ -9,6 +9,8 @@ def calcPrice(numberTickets):
     IVA = 1.21
     priceTicket = 300
     return (priceTicket*numberTickets)*IVA
+
+#FUNCION DEFINIR ASIENTOS
 def seatSearch(numberTickets):
     from random import randint
     seatPlace = list()
@@ -36,11 +38,13 @@ def seatSearch(numberTickets):
     print ("{:>28}".format("Pantalla"))
 
     print("")
+
+    #SELECCION DE ASIENTOS
     for n in range(0,numberTickets):
         fila, columna = input("Seleccione un asiento: ")
         columna = int(columna)
         for i in matriz.keys():
-            for j in range(0,13):
+            for j in range(0,12):
                 if fila == i and columna == j:
                     if matriz[i][j] == 1:
                         print ("Ocupado, seleccione otro")
@@ -50,7 +54,7 @@ def seatSearch(numberTickets):
                         print ("Asiento reservado")
                         seatPlace.append([i,str(j)]) 
                         print("")
-    print("{:>3}".format("|"), end=" ")
+    """print("{:>3}".format("|"), end=" ")
     for x in range(0,12):
         print ("{:<3}".format(x), end = " ")
     print ("")
@@ -61,7 +65,7 @@ def seatSearch(numberTickets):
             print(j, end="   ")
         print("")
     print ("")
-    print ("{:>28}".format("Pantalla"))
+    print ("{:>28}".format("Pantalla"))"""
 
     return seatPlace
 def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin

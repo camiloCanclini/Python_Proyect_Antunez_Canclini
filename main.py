@@ -27,7 +27,7 @@ while True:
     print ("Por favor, seleccione la opcion correspondiente:\n")
     print ("1) Registrarse")
     print ("2) Ingresar")
-    try:# Si esto tira error se realiza el except, esto se hace por si no se ingresa un numero 
+    try:# Si esto tira error se realiza el except, esto se hace por si se ingresa un numero incorrecto 
         optionSelected = int(input("Ingrese una opcion:"))
     except:
         print("Elija de nuevo porfavor...")
@@ -59,7 +59,10 @@ while True:
                         print (i,")",end="")
                         print (movies[i]["titulo"])
                         print (movies[i]["fecha"])
-                        print (movies[i]["horario"])
+                        print (movies[i]["horarios"])
+                        print (movies[i]["Genero"])
+                        print (movies[i]["Calificacion"])
+
                     except:
                         continue
                 print("Elija la pelicula(numero)...")
@@ -68,6 +71,8 @@ while True:
                 except:
                     print("Elija de nuevo porfavor...")
                     continue
+
+                #Busqueda de pelicula en el JSON
                 for i in movies.keys():
                     if movieNumber == i:
                         movieName = movies[i]["titulo"]
@@ -89,11 +94,12 @@ while True:
                     print ("Usted tiene que seleccionar por lo menos un ticket ")
                     continue #vuelve a las opciones
                 price = functions.calcPrice(numberTickets)
-                #Asientos de cine
                 os.system('cls||clear') #limpia la pantalla
+
+                #Asientos de cine
                 print ("A continuacion se le presentara matriz con los lugares disponibles")
                 seatPlace=functions.seatSearch(numberTickets)
-                os.system('cls||clear') #limpia la pantalla
+                os.system('cls||clear') #limpia la pantalla 
                 print (seatPlace)
                 functions.purchaseResume(movieName, numberTickets, price, emailSession)
                 print ("Ingrese Y para confirmar, Cualquier otra tecla para cancelar")
@@ -108,7 +114,7 @@ while True:
                 else:
                     continue
             if option2Selected ==2:
-                print ("Volviendo Al Menu Principal...")
+                #print ("Volviendo Al Menu Principal...")
                 break
                 
     
