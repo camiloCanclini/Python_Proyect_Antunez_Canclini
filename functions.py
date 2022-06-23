@@ -54,20 +54,9 @@ def seatSearch(numberTickets):
                         print ("Asiento reservado")
                         seatPlace.append([i,str(j)]) 
                         print("")
-    """print("{:>3}".format("|"), end=" ")
-    for x in range(0,12):
-        print ("{:<3}".format(x), end = " ")
-    print ("")
-    print("---------------------------------------------------")
-    for i in matriz.keys():
-        print (i,"|",end=" ")
-        for j in matriz[i]:
-            print(j, end="   ")
-        print("")
-    print ("")
-    print ("{:>28}".format("Pantalla"))"""
-
+    print("{:>3}".format("|"), end=" ")
     return seatPlace
+
 def templateJsonFile():# Esta funcion limpia el JSON y crea el usuario admin
     templateJsonUsers = {
         0:{

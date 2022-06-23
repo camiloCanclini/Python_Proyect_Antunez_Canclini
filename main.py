@@ -18,15 +18,18 @@ ________________________________________________________________________________
 #Definicion de Librerias, funciones y metodos----------------------------------------------------------    
 import json, random
 import os
+from tkinter import Menu
 import functions #Se linkean las funciones del programa
-#Comienzo del Programa---------------------------------------------------------------------------------          
-while True:
+#Comienzo del Programa--------------------------------------------------------------------------------- 
+Menu = True         
+while (Menu == True):
     os.system('cls||clear') #limpia la pantalla
     print ("\nObtenga su entrada de cine sin salir de su casa!")
     print("Si usted ya es cliente simplemente ingrese su usuario y contraseña.")
     print ("Por favor, seleccione la opcion correspondiente:\n")
     print ("1) Registrarse")
     print ("2) Ingresar")
+    print ("3) Salir")
     try:# Si esto tira error se realiza el except, esto se hace por si se ingresa un numero incorrecto 
         optionSelected = int(input("Ingrese una opcion:"))
     except:
@@ -38,6 +41,7 @@ while True:
     elif optionSelected == 2:
         emailSession = functions.login(functions.getUsers())
         os.system('cls||clear') #limpia la pantalla
+
         while True:
             os.system('cls||clear') #limpia la pantalla
             print ("\n---Bienvenido al Sistema de Cine---")
@@ -112,9 +116,12 @@ while True:
                     print ("Volviendo al menu")
                     continue
                 else:
-                    continue
+                    break
             if option2Selected ==2:
                 #print ("Volviendo Al Menu Principal...")
+                Menu = False
                 break
-                
+
+    elif optionSelected == 3 :
+        break           
     
